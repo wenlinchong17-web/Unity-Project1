@@ -2,10 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CharacterAttack : MonoBehaviour
+public class PlayerAttack : MonoBehaviour
 {
-    public int damage = 10;
-    
     private Animator _animator;
     // Start is called before the first frame update
     void Start()
@@ -16,13 +14,13 @@ public class CharacterAttack : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Attack();
+         AttackWithSword();
     }
 
-    public void Attack()
+    public void AttackWithSword()
     {
         AnimatorStateInfo _stateInfo = _animator.GetCurrentAnimatorStateInfo(0);
-        if(Input.GetKeyDown(KeyCode.J)&&!_stateInfo.IsName("Attack with Sword"))
-            _animator.SetTrigger("Attack with Sword");
+        if(Input.GetKeyDown(KeyCode.J)&&!_stateInfo.IsName("Attack with sword"))
+            _animator.SetTrigger("Attack with sword");
     }
 }

@@ -3,18 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Character : MonoBehaviour
+public class Player : Character
 {
-    public int MaxHP;
-    public int CurrentHP;
-    public int MaxMP;
-    public int CurrentMP;
-
-    public float MoveSpeed = 5f;
-    public float JumpSpeed = 10f;
-    public bool IsGrounded = true;
-    public bool FacingRight = true;//true表示向右，false表示向左
-    
     private Rigidbody2D _rb;
     private Vector2 _MoveInput;
     private SpriteRenderer _sprite;
@@ -58,22 +48,25 @@ public class Character : MonoBehaviour
         _MoveInput.y = Input.GetAxisRaw("Vertical");
             
         AnimatorStateInfo _stateInfo = _animator.GetCurrentAnimatorStateInfo(0);
-        bool IsAttacking = _stateInfo.IsName("Attack with Sword");
+        IsAttacking = _stateInfo.IsName("Attack with sword");
         
         if (!IsAttacking&&IsGrounded)
         {
             if (_MoveInput.x > 0 && _transform.localScale.x < 0)
             {
+                Debug.LogFormat("IsAttacking:{0}", IsAttacking);
                 Flip();
             }
             else if (_MoveInput.x < 0 && _transform.localScale.x > 0)
             {
+                Debug.LogFormat("IsAttacking:{0}", IsAttacking);
                 Flip();
             }
         }
 
         if (!IsAttacking&&IsGrounded)
         {
+            Debug.LogFormat("IsAttacking:{0}", IsAttacking);
             _rb.velocity = new Vector2(_MoveInput.x * MoveSpeed, _rb.velocity.y);
         }
 
@@ -127,26 +120,16 @@ public class Character : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.CompareTag("Ground"))
-        {
-            IsGrounded = true;
-        }
-    }
-
-    private void OnCollisionExit2D(Collision2D collision)
-    {
-        if (collision.gameObject.CompareTag("Ground"))
-        {
-            IsGrounded = false;
-        }
-    }
+   
 
     public void EquipWeapon(int index)
     {
         if (index < 0 || index >= Weapons.Count)
+        {
+            Debug.Log("武器不存在!");
             return;
+        }
+            
         if (CurrentWeapon != null)
         {
             CurrentWeapon.SetActive(false);
@@ -162,6 +145,15 @@ public class Character : MonoBehaviour
         {
             int index = (CurrentWeaponIndex+1)%Weapons.Count;
             EquipWeapon(index);
+        }
+    }
+
+    public void OnTriggerEnter2D(Collider2D other)
+    {
+        throw new NotImplementedException();
+        if (other.CompareTag("EnemyAttack"))
+        {
+            
         }
     }
 }
