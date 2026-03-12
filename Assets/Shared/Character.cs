@@ -13,6 +13,7 @@ public class Character : MonoBehaviour
     public float JumpSpeed;
     public bool IsGrounded;
     public bool IsAttacking;
+    public bool IsAlive;
     
     // Start is called before the first frame update
     void Start()
@@ -41,5 +42,20 @@ public class Character : MonoBehaviour
         {
             IsGrounded = false;
         }
+    }
+    
+    public void TakeDamage(int damage)
+    {
+        CurrentHP -= damage;
+        if (CurrentHP <= 0)
+        {
+            Die();
+        }
+    }
+
+    public void Die()
+    {
+        IsAlive = false;
+        Debug.Log("The character is Dead");
     }
 }
