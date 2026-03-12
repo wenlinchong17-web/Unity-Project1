@@ -147,13 +147,17 @@ public class Player : Character
             EquipWeapon(index);
         }
     }
+    
+    //受击判定
+    
 
-    public void OnTriggerEnter2D(Collider2D other)
-    {
-        throw new NotImplementedException();
-        if (other.CompareTag("EnemyAttack"))
-        {
-            
-        }
-    }
+    // public void OnTriggerEnter2D(Collider2D other)
+    // {
+    //     throw new NotImplementedException();
+    //     EnemyAttack enemyAttack = other.GetComponent<EnemyAttack>();
+    //     if (other.CompareTag("EnemyAttack"))
+    //     {
+    //         TakeDamage(EnemyAttack.damage);
+    //     }
+    // }
 }
