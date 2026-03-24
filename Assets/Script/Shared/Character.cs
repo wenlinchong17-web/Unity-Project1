@@ -13,12 +13,15 @@ public class Character : MonoBehaviour
     public float JumpSpeed;
     public bool IsGrounded;
     public bool IsAttacking;
+    public bool IsGetHit;
     public bool IsAlive;
+    
+    [SerializeField] protected Collider2D[] weaponCollider;
     
     // Start is called before the first frame update
     void Start()
     {
-        
+        DisableWeapon();
     }
 
     // Update is called once per frame
@@ -44,7 +47,7 @@ public class Character : MonoBehaviour
         }
     }
     
-    public void TakeDamage(int damage)
+    public virtual void TakeDamage(int damage)
     {
         
         CurrentHP -= damage;
@@ -57,10 +60,28 @@ public class Character : MonoBehaviour
         }
     }
 
-    public void Die()
+    public virtual void Die()
     {
         IsAlive = false;
         Debug.Log("The character is Dead");
         Destroy(gameObject);
+    }
+    
+    public void EnableWeapon()
+    {
+        foreach (var col in weaponCollider)
+        {
+            //Debug.Log("武器开启");
+            col.enabled = true;
+        }
+    }
+
+    public void DisableWeapon()
+    {
+        foreach (var col in weaponCollider)
+        {
+            //Debug.Log("武器关闭");
+            col.enabled = false;
+        }
     }
 }

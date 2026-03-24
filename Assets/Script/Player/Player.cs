@@ -16,6 +16,7 @@ public class Player : Character
     public List<GameObject> Weapons;
     public GameObject CurrentWeapon;
     public int CurrentWeaponIndex = 0;
+    public AnimatorStateInfo _stateInfo;
     
     // Start is called before the first frame update
     void Start()
@@ -31,7 +32,7 @@ public class Player : Character
             child.gameObject.SetActive(false);
             EquipWeapon(CurrentWeaponIndex);
         }
-        
+        DisableWeapon();
     }
 
     // Update is called once per frame
@@ -40,6 +41,7 @@ public class Player : Character
         Move();
         Jump();
         ChangeWeapon();
+        _stateInfo = _animator.GetCurrentAnimatorStateInfo(0);
     }
 
     public void Move()
@@ -47,8 +49,8 @@ public class Player : Character
         _MoveInput.x = Input.GetAxisRaw("Horizontal");
         _MoveInput.y = Input.GetAxisRaw("Vertical");
             
-        AnimatorStateInfo _stateInfo = _animator.GetCurrentAnimatorStateInfo(0);
-        IsAttacking = _stateInfo.IsName("Attack with sword");
+       
+        IsAttacking = _stateInfo.IsName("Attack_Player_Sword");
         
         if (!IsAttacking&&IsGrounded)
         {
@@ -157,5 +159,23 @@ public class Player : Character
             int damage = enemyDamage.damage;
             TakeDamage(damage);
         }
+    }
+    
+    public override void TakeDamage(int damage)
+    {
+        
+        CurrentHP -= damage;
+        Debug.Log("The Player is Damaged,Current HP: " + CurrentHP);
+        if (CurrentHP <= 0)
+        {
+            Die();
+        }
+    }
+
+    public override void Die()
+    {
+        IsAlive = false;
+        Debug.Log("The Player is Dead");
+        Destroy(gameObject);
     }
 }
