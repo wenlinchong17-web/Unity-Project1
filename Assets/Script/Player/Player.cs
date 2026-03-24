@@ -16,7 +16,7 @@ public class Player : Character
     public List<GameObject> Weapons;
     public GameObject CurrentWeapon;
     public int CurrentWeaponIndex = 0;
-    public AnimatorStateInfo _stateInfo;
+    public float DashSpeed;
     
     // Start is called before the first frame update
     void Start()
@@ -25,6 +25,8 @@ public class Player : Character
         _sprite = GetComponent<SpriteRenderer>();
         _transform = GetComponent<Transform>();
         _animator = GetComponent<Animator>();
+        IsAttacking = false;
+        CurrentHP = MaxHP;
         
         foreach(Transform child in HandBone)
         {
@@ -41,7 +43,6 @@ public class Player : Character
         Move();
         Jump();
         ChangeWeapon();
-        _stateInfo = _animator.GetCurrentAnimatorStateInfo(0);
     }
 
     public void Move()
@@ -50,7 +51,7 @@ public class Player : Character
         _MoveInput.y = Input.GetAxisRaw("Vertical");
             
        
-        IsAttacking = _stateInfo.IsName("Attack_Player_Sword");
+        //IsAttacking = _stateInfo.IsName("Attack_Player_Sword");
         
         if (!IsAttacking&&IsGrounded)
         {

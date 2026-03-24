@@ -13,6 +13,8 @@ public class Enemy1 : Enemy
         animator = GetComponent<Animator>();
         DisableWeapon();
         IsGetHit = false;
+        CurrentHP = MaxHP;
+        CurrentMP = MaxMP;
     }
 
     // Update is called once per frame
@@ -35,13 +37,5 @@ public class Enemy1 : Enemy
             
         }
     }
-
-    public void OpenIsGetHit()
-    {
-        IsGetHit = true;
-    }
-    public void ResetIsGetHit()
-    {
-        IsGetHit = false;
-    }
+    
 }

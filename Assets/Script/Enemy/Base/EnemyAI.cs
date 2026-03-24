@@ -6,13 +6,12 @@ public class EnemyAI : MonoBehaviour
 {
     // Start is called before the first frame update
     public Transform Player;
-    
     public float PatrolSpeed = 2f;
     public float ChaseSpeed = 3f;
-    
     public float DetectRange = 5f;
     public float AttackRange = 3f;
-    
+    private float lastAttackTime;
+    public float AttackCoolDown = 2f;
     //巡逻点位
     public Transform PointA; 
     public Transform PointB;
@@ -25,13 +24,14 @@ public class EnemyAI : MonoBehaviour
     private EnemyState currentState;
     [SerializeField]
     private Transform targetPoint;
+
+    
     
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         Player = GameObject.FindGameObjectWithTag("Player").transform;
         currentState = EnemyState.Patrol;
-
         targetPoint = PointB;
     }
 
@@ -117,7 +117,12 @@ public class EnemyAI : MonoBehaviour
 
     public void Attack()
     {
-        animator.SetTrigger("Attack");
+        if (Time.time - lastAttackTime >= AttackCoolDown)
+        {
+            animator.SetTrigger("Attack");
+            lastAttackTime =  Time.time;
+        }
+        
     }
     
     

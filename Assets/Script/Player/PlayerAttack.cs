@@ -21,7 +21,6 @@ public class PlayerAttack : MonoBehaviour
 
     public void AttackWithSword()
     {
-        //AnimatorStateInfo _stateInfo = _animator.GetCurrentAnimatorStateInfo(0);
         if(Input.GetKeyDown(KeyCode.J)&&!player.IsAttacking)
             _animator.SetTrigger("Attack with sword");
     }

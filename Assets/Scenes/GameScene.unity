@@ -2573,7 +2573,7 @@ MonoBehaviour:
   MoveSpeed: 3
   JumpSpeed: 5
   IsGrounded: 1
-  IsAttacking: 1
+  IsAttacking: 0
   IsGetHit: 0
   IsAlive: 0
   weaponCollider:
@@ -2583,6 +2583,7 @@ MonoBehaviour:
   Weapons: []
   CurrentWeapon: {fileID: 0}
   CurrentWeaponIndex: 0
+  DashSpeed: 10
 --- !u!95 &1713128883
 Animator:
   serializedVersion: 5
@@ -2895,6 +2896,7 @@ MonoBehaviour:
   ChaseSpeed: 2
   DetectRange: 5
   AttackRange: 1
+  AttackCoolDown: 5
   PointA: {fileID: 50942839}
   PointB: {fileID: 1055507560}
   animator: {fileID: 1980970834}
@@ -3395,7 +3397,6 @@ GameObject:
   - component: {fileID: 1713128883}
   - component: {fileID: 1713128886}
   - component: {fileID: 1670789330911523785}
-  - component: {fileID: 1670789330911523786}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -3819,29 +3820,6 @@ MonoBehaviour:
   manaText: {fileID: 778454688}
   damageTextPrefab: {fileID: 6044097302889220490, guid: 938093226e177c147b95b3e253388b31, type: 3}
   canvasTransform: {fileID: 1304640699}
---- !u!114 &1670789330911523786
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 569652436851305387}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4d1b10fc852254796a0d18a5340a34c3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  MaxHP: 0
-  CurrentHP: 0
-  MaxMP: 0
-  CurrentMP: 0
-  MoveSpeed: 0
-  JumpSpeed: 0
-  IsGrounded: 0
-  IsAttacking: 0
-  IsGetHit: 0
-  IsAlive: 0
-  weaponCollider: []
 --- !u!1 &1773633858952435742
 GameObject:
   m_ObjectHideFlags: 0
