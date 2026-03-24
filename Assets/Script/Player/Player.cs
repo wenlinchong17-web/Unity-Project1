@@ -165,6 +165,7 @@ public class Player : Character
     {
         
         CurrentHP -= damage;
+        GetComponent<PlayerStats>()?.OnTakeDamage(damage);
         Debug.Log("The Player is Damaged,Current HP: " + CurrentHP);
         if (CurrentHP <= 0)
         {

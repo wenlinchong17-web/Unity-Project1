@@ -50,23 +50,24 @@ public class Character : MonoBehaviour
     public virtual void TakeDamage(int damage)
     {
         
-        CurrentHP -= damage;
-        Debug.Log("The character is Damaged,Current HP: " + CurrentHP);
-
-        GetComponent<PlayerStats>()?.OnTakeDamage(damage);
-        if (CurrentHP <= 0)
-        {
-            Die();
-        }
+        // CurrentHP -= damage;
+        // Debug.Log("The character is Damaged,Current HP: " + CurrentHP);
+        //
+        // GetComponent<PlayerStats>()?.OnTakeDamage(damage);
+        // if (CurrentHP <= 0)
+        // {
+        //     Die();
+        // }
     }
 
     public virtual void Die()
     {
-        IsAlive = false;
-        Debug.Log("The character is Dead");
-        Destroy(gameObject);
+        // IsAlive = false;
+        // Debug.Log("The character is Dead");
+        // Destroy(gameObject);
     }
     
+    //打开/关闭武器碰撞体积
     public void EnableWeapon()
     {
         foreach (var col in weaponCollider)
@@ -83,5 +84,16 @@ public class Character : MonoBehaviour
             //Debug.Log("武器关闭");
             col.enabled = false;
         }
+    }
+    
+    //设置IsAttacking
+    public void SetIsAttacking()
+    {
+        IsAttacking = true;
+    }
+
+    public void ResetIsA()
+    {
+        IsAttacking = false;
     }
 }

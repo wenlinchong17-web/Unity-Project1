@@ -2566,7 +2566,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d8edece476a3e45e8a8393d3207e6cd0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxHP: 99
+  MaxHP: 100
   CurrentHP: 100
   MaxMP: 100
   CurrentMP: 100
@@ -3839,7 +3839,9 @@ MonoBehaviour:
   JumpSpeed: 0
   IsGrounded: 0
   IsAttacking: 0
+  IsGetHit: 0
   IsAlive: 0
+  weaponCollider: []
 --- !u!1 &1773633858952435742
 GameObject:
   m_ObjectHideFlags: 0

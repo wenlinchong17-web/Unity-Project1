@@ -24,6 +24,7 @@ public class Enemy : Character
     {
         
         CurrentHP -= damage;
+        GetComponent<PlayerStats>()?.OnTakeDamage(damage);
         Debug.Log("The Enemy is Damaged,Current HP: " + CurrentHP);
         if (CurrentHP <= 0)
         {
