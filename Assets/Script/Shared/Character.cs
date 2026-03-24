@@ -49,6 +49,8 @@ public class Character : MonoBehaviour
         
         CurrentHP -= damage;
         Debug.Log("The character is Damaged,Current HP: " + CurrentHP);
+
+        GetComponent<PlayerStats>()?.OnTakeDamage(damage);
         if (CurrentHP <= 0)
         {
             Die();
